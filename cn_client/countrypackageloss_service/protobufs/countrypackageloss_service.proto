@@ -1,0 +1,22 @@
+syntax = "proto3";
+ 
+message CountryPackageLossRequest {
+    string country_name = 1;
+    bool mean = 2;
+}
+
+message CountryPackageLoss {
+    string country_name = 1;
+    string country_code = 2;
+    string isp_name = 3;
+    string date_request = 4;
+    string packet_loss = 5;
+}
+
+message CountryPackageLossResponse {
+    repeated CountryPackageLoss countryPackageLoss = 1;
+}
+
+service CountryPackageLossService {
+    rpc CountryPackageLossInfo (CountryPackageLossRequest) returns (CountryPackageLossResponse);
+}

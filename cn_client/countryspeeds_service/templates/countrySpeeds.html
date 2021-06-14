@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Internet Speeds</title>
+</head>
+<body>
+    <h1>Internet Speeds of {{countrySpeeds[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Date</th>
+                <th>Download Speed</th>
+                <th>Upload Speed</th>
+            </tr>
+            {% for speed in countrySpeeds %}
+            <tr>
+                <th>{{speed.country_name}}</th>
+                <th>{{speed.country_code}}</th>
+                <th>{{speed.date_request}}</th>
+                <th>{{speed.download_speed}}</th>
+                <th>{{speed.upload_speed}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</body>

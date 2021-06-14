@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Internet Package Loss</title>
+</head>
+<body>
+    <h1>Country Internet Package Loss of {{countryPackageLoss[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>ISP name</th>
+                <th>Date</th>
+                <th>Packet Loss</th>
+            </tr>
+            {% for info in countryPackageLoss %}
+            <tr>
+                <th>{{info.country_name}}</th>
+                <th>{{info.country_code}}</th>
+                <th>{{info.isp_name}}</th>
+                <th>{{info.date_request}}</th>
+                <th>{{info.packet_loss}}%</th>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</body>

@@ -1,0 +1,196 @@
+version: "3.8"
+services:
+  db:
+    image: db
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - backnet
+    environment:
+      - MYSQL_ROOT_PASSWORD=54505450
+    build: 
+      context: database
+      dockerfile: Dockerfile  
+
+  cityspeeds_server:
+    build: 
+      context: cn_server/cityspeeds_service/
+      dockerfile: Dockerfile
+    image: cityspeeds_service_server
+    ports:
+      - 50051:50051
+    networks:
+      - backnet
+      - frontnet
+  cityspeeds_client:
+    image: cityspeeds_service_client
+    build: 
+      context: cn_client/cityspeeds_service/
+      dockerfile: Dockerfile
+    environment: 
+      CITYSPEEDS_SERVICE_HOST: cityspeeds_server
+    ports:
+      - 5000:5000
+    networks:
+      - frontnet
+
+  countrydistanceclientserver_server:
+    build: 
+      context: cn_server/countrydistanceclientserver_service/
+      dockerfile: Dockerfile
+    image: countrydistanceclientserver_service_server
+    ports:
+      - 50052:50052
+    networks:
+      - backnet
+      - frontnet
+  countrydistanceclientserver_client:
+    image: countrydistanceclientserver_service_client
+    build: 
+      context: cn_client/countrydistanceclientserver_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYDISTANCECLIENTSERVER_SERVICE_HOST: countrydistanceclientserver_server
+    ports:
+      - 5001:5001
+    networks:
+      - frontnet    
+
+  countrylatency_server:
+    build: 
+      context: cn_server/countrylatency_service/
+      dockerfile: Dockerfile
+    image: countrylatency_service_server
+    ports:
+      - 50053:50053
+    networks:
+      - backnet
+      - frontnet
+  countrylatency_client:
+    image: countrylatency_service_client
+    build: 
+      context: cn_client/countrylatency_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYLATENCY_SERVICE_HOST: countrylatency_server
+    ports:
+      - 5002:5002
+    networks:
+      - frontnet    
+      
+  countrypackageloss_server:
+    build: 
+        context: cn_server/countrypackageloss_service/
+        dockerfile: Dockerfile
+    image: countrypackageloss_service_server
+    ports:
+      - 50054:50054
+    networks:
+      - backnet
+      - frontnet  
+  countrypackageloss_client:
+    image: countrypackageloss_service_client
+    build: 
+      context: cn_client/countrypackageloss_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYPACKAGELOSS_SERVICE_HOST: countrypackageloss_server
+    ports:
+      - 5003:5003
+    networks:
+      - frontnet  
+
+  countryspeeds_server:
+    build: 
+      context: cn_server/countryspeeds_service/
+      dockerfile: Dockerfile
+    image: countryspeeds_service_server
+    ports:
+      - 50055:50055
+    networks:
+      - backnet
+      - frontnet
+  countryspeeds_client:
+    image: countryspeeds_service_client
+    build: 
+      context: cn_client/countryspeeds_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYSPEEDS_SERVICE_HOST: countryspeeds_server
+    ports:
+      - 5004:5004
+    networks:
+      - frontnet   
+
+  regionspeeds_server:
+    build: 
+      context: cn_server/regionspeeds_service/
+      dockerfile: Dockerfile
+    image: regionspeeds_service_server
+    ports:
+      - 50056:50056
+    networks:
+      - backnet
+      - frontnet
+  regionspeeds_client:
+    image: regionspeeds_service_client
+    build: 
+      context: cn_client/regionspeeds_service/
+      dockerfile: Dockerfile
+    environment: 
+      REGIONSPEEDS_SERVICE_HOST: regionspeeds_server
+    ports:
+      - 5005:5005
+    networks:
+      - frontnet  
+
+  countrytotaltests_server:
+    build: 
+      context: cn_server/countrytotaltests_service/
+      dockerfile: Dockerfile
+    image: countrytotaltests_service_server
+    ports:
+      - 50057:50057
+    networks:
+      - backnet
+      - frontnet  
+  countrytotaltests_client:
+    image: countrytotaltests_service_client
+    build: 
+      context: cn_client/countrytotaltests_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYTOTALTESTS_SERVICE_HOST: countrytotaltests_server
+    ports:
+      - 5006:5006
+    networks:
+      - frontnet  
+
+  countrycostmbps_server:
+    build: 
+      context: cn_server/countrycostmbps_service/
+      dockerfile: Dockerfile
+    image: countrycostmbps_service_server
+    ports:
+      - 50058:50058
+    networks:
+      - backnet
+      - frontnet  
+  countrycostmbps_client:
+    image: countrycostmbps_service_client
+    build: 
+      context: cn_client/countrycostmbps_service/
+      dockerfile: Dockerfile
+    environment: 
+      COUNTRYCOSTMBPS_SERVICE_HOST: countrycostmbps_server
+    ports:
+      - 5007:5007
+    networks:
+      - frontnet  
+volumes:
+  db-data:
+networks:
+  backnet:
+  frontnet:

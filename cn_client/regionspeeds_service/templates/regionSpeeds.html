@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Region Internet Speeds</title>
+</head>
+<body>
+    <h1>Internet Speeds of {{regionSpeeds[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Region Name</th>
+                <th>Region Code</th>
+                <th>ISP</th>
+                <th>Date</th>
+                <th>Download Speed</th>
+                <th>Upload Speed</th>
+            </tr>
+            {% for speed in regionSpeeds %}
+            <tr>
+                <th>{{speed.country_name}}</th>
+                <th>{{speed.country_code}}</th>
+                <th>{{speed.region_name}}</th>
+                <th>{{speed.region_code}}</th>
+                <th>{{speed.isp_name}}</th>
+                <th>{{speed.date_request}}</th>
+                <th>{{speed.download_speed}}</th>
+                <th>{{speed.upload_speed}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</body>

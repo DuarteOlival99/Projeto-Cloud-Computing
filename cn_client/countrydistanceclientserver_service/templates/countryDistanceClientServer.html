@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Internet Distance Client Server</title>
+</head>
+<body>
+    <h1>Country Internet Distance Client Server of {{CountryDistanceClientServer[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>ISP name</th>
+                <th>Date</th>
+                <th>Total Tests</th>
+                <th>Distance Miles</th>
+            </tr>
+            {% for info in CountryDistanceClientServer %}
+            <tr>
+                <th>{{info.country_name}}</th>
+                <th>{{info.country_code}}</th>
+                <th>{{info.isp_name}}</th>
+                <th>{{info.date_request}}</th>
+                <th>{{info.total_tests}}</th>
+                <th>{{info.distance_miles}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</body>

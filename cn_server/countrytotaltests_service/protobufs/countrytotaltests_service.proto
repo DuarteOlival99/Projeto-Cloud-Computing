@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message CountryTotalTestsRequest {
+    string country_name = 1;
+}
+
+message CountryTotalTests {
+    string country_name = 1;
+    string country_code = 2;
+    string tests_date = 3;
+    string total_tests = 4;
+}
+
+message CountryTotalTestsResponse {
+    repeated CountryTotalTests countryTotalTests = 1;
+}
+service CountryTotalTestsService {
+    rpc CountryTotalTestsInfo (CountryTotalTestsRequest) returns (CountryTotalTestsResponse);
+}

@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: internet-ingress
+  annotations:
+    internet.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /city/internet_speed
+          backend:
+            serviceName: cityspeedsclient
+            servicePort: 5000
+        # - path: /country/distanceClientServer
+        #   backend:
+        #     serviceName: countrydistanceclientserverclient
+        #     servicePort: 5001
+        # - path: /country/internet_latency
+        #   backend:
+        #     serviceName: countrylatencyclient
+        #     servicePort: 5002
+        # - path: /country/internet_packageLoss
+        #   backend:
+        #     serviceName: countrypackagelossclient
+        #     servicePort: 5003            
+        - path: /country/internet_speed
+          backend:
+            serviceName: countryspeedsclient
+            servicePort: 5004
+        # - path: /region/internet_speed
+        #   backend:
+        #     serviceName: regionspeedsclient
+        #     servicePort: 5005
+        - path: /country/total_tests
+          backend:
+            serviceName: countrytotaltestsclient
+            servicePort: 5006
+        - path: /country/cost_mbps
+          backend:
+            serviceName: countrycostmbpsclient
+            servicePort: 5007

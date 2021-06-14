@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message CountryCostmbpsRequest {
+    string country_name = 1;
+}
+
+message CountryCostmbps {
+    string country_name = 1;
+    string country_code = 2;
+    string date = 3;
+    string median_usd_mbps_down = 4;
+    string median_usd_mbps_up = 5;
+    string total_surveys = 6;
+}
+
+message CountryCostmbpsResponse {
+    repeated CountryCostmbps countryCostmbps = 1;
+}
+service CountryCostmbpsService {
+    rpc CountryCostmbpsInfo (CountryCostmbpsRequest) returns (CountryCostmbpsResponse);
+}

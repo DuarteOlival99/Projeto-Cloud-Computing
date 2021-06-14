@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message CountryLatencyRequest {
+    string country_name = 1;
+    bool mean = 2;
+}
+
+message CountryLatency {
+    string country_name = 1;
+    string country_code = 2;
+    string date_request = 3;
+    string isp_name = 4;
+    string latency = 5;
+}
+
+message CountryLatencyResponse {
+    repeated CountryLatency countryLatency = 1;
+}
+service CountryLatencyService {
+    rpc CountryLatencyInfo (CountryLatencyRequest) returns (CountryLatencyResponse);
+}

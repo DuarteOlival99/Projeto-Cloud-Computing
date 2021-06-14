@@ -1,0 +1,23 @@
+syntax = "proto3";
+ 
+message CountryDistanceClientServerRequest {
+    string country_name = 1;
+    bool mean = 2;
+}
+
+message CountryDistanceClientServer {
+    string country_name = 1;
+    string country_code = 2;
+    string isp_name = 3;
+    string date_request = 4;
+    string total_tests = 5; 
+    string distance_miles = 6; 
+}
+
+message CountryDistanceClientServerResponse {
+    repeated CountryDistanceClientServer countryDistanceClientServer = 1;
+}
+
+service CountryDistanceClientServerService {
+    rpc CountryDistanceClientServerInfo (CountryDistanceClientServerRequest) returns (CountryDistanceClientServerResponse);
+}

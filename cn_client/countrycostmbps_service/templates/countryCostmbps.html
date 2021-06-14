@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Cost $/Mbps</title>
+</head>
+<body>
+    <h1>Cost of {{countrycostmbps[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Date</th>
+                <th>Median Monthly cost $/mbps (Download)</th>
+                <th>Median Monthly cost $/mbps (Upload)</th>
+                <th>Total Surveys</th>
+            </tr>
+            {% for cost in countrycostmbps %}
+            <tr>
+                <th>{{cost.country_name}}</th>
+                <th>{{cost.country_code}}</th>
+                <th>{{cost.date}}</th>
+                <th>{{cost.median_usd_mbps_down}}</th>
+                <th>{{cost.median_usd_mbps_up}}</th>
+                <th>{{cost.total_surveys}}</th>
+            </tr>
+            {% endfor %}
+</body>

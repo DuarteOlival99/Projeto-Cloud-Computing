@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Latency</title>
+</head>
+<body>
+    <h1>Internet Speeds of {{countryLatency[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Date</th>
+                <th>Latency</th>
+            </tr>
+            {% for speed in countryLatency %}
+            <tr>
+                <th>{{speed.country_name}}</th>
+                <th>{{speed.country_code}}</th>
+                <th>{{speed.date_request}}</th>
+                <th>{{speed.latency}}</th>
+            </tr>
+            {% endfor %}
+        </table>
+</body>

@@ -1,0 +1,538 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: cityspeedsclient
+    labels:
+        app: cityspeedsclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: cityspeedsclient
+    template:
+        metadata:
+            labels:
+                app: cityspeedsclient
+        spec:
+            containers:
+                - name: cityspeedsclient
+                  image: sbdayhfd/project:cityspeeds_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: cityspeedsserver
+    labels:
+        app: cityspeedsserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: cityspeedsserver
+    template:
+        metadata:
+            labels:
+                app: cityspeedsserver
+        spec:
+            containers:
+                - name: cityspeedsserver
+                  image: sbdayhfd/project:cityspeeds_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: cityspeedsserver
+spec:
+    selector:
+        app: cityspeedsserver
+    ports:
+        - protocol: TCP
+          port: 50051
+          targetPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: cityspeedsclient
+spec:
+    type: NodePort
+    selector:
+        app: cityspeedsclient
+    ports:
+        - protocol: TCP
+          port: 5000
+          targetPort: 5000
+
+          
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrydistanceclientserverclient
+    labels:
+        app: countrydistanceclientserverclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrydistanceclientserverclient
+    template:
+        metadata:
+            labels:
+                app: countrydistanceclientserverclient
+        spec:
+            containers:
+                - name: countrydistanceclientserverclient
+                  image: sbdayhfd/project:countrydistanceclientserver_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrydistanceclientserverserver
+    labels:
+        app: countrydistanceclientserverserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrydistanceclientserverserver
+    template:
+        metadata:
+            labels:
+                app: countrydistanceclientserverserver
+        spec:
+            containers:
+                - name: countrydistanceclientserverserver
+                  image: sbdayhfd/project:countrydistanceclientserver_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrydistanceclientserverserver
+spec:
+    selector:
+        app: countrydistanceclientserverserver
+    ports:
+        - protocol: TCP
+          port: 50052
+          targetPort: 50052
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrydistanceclientserverclient
+spec:
+    type: LoadBalancer
+    selector:
+        app: countrydistanceclientserverclient
+    ports:
+        - protocol: TCP
+          port: 5001
+          targetPort: 5001
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrylatencyclient
+    labels:
+        app: countrylatencyclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrylatencyclient
+    template:
+        metadata:
+            labels:
+                app: countrylatencyclient
+        spec:
+            containers:
+                - name: countrylatencyclient
+                  image: sbdayhfd/project:countrylatency_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrylatencyserver
+    labels:
+        app: countrylatencyserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrylatencyserver
+    template:
+        metadata:
+            labels:
+                app: countrylatencyserver
+        spec:
+            containers:
+                - name: countrylatencyserver
+                  image: sbdayhfd/project:countrylatency_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrylatencyserver
+spec:
+    selector:
+        app: countrylatencyserver
+    ports:
+        - protocol: TCP
+          port: 50053
+          targetPort: 50053
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrylatencyclient
+spec:
+    type: LoadBalancer
+    selector:
+        app: countrylatencyclient
+    ports:
+        - protocol: TCP
+          port: 5002
+          targetPort: 5002          
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrypackagelossclient
+    labels:
+        app: countrypackagelossclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrypackagelossclient
+    template:
+        metadata:
+            labels:
+                app: countrypackagelossclient
+        spec:
+            containers:
+                - name: countrypackagelossclient
+                  image: sbdayhfd/project:countrypackageloss_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrypackagelossserver
+    labels:
+        app: countrypackagelossserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrypackagelossserver
+    template:
+        metadata:
+            labels:
+                app: countrypackagelossserver
+        spec:
+            containers:
+                - name: countrypackagelossserver
+                  image: sbdayhfd/project:countrypackageloss_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrypackagelossserver
+spec:
+    selector:
+        app: countrypackagelossserver
+    ports:
+        - protocol: TCP
+          port: 50054
+          targetPort: 50054
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrypackagelossclient
+spec:
+    type: LoadBalancer
+    selector:
+        app: countrypackagelossclient
+    ports:
+        - protocol: TCP
+          port: 5003
+          targetPort: 5003
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countryspeedsclient
+    labels:
+        app: countryspeedsclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countryspeedsclient
+    template:
+        metadata:
+            labels:
+                app: countryspeedsclient
+        spec:
+            containers:
+                - name: countryspeedsclient
+                  image: sbdayhfd/project:countryspeeds_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countryspeedsserver
+    labels:
+        app: countryspeedsserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countryspeedsserver
+    template:
+        metadata:
+            labels:
+                app: countryspeedsserver
+        spec:
+            containers:
+                - name: countryspeedsserver
+                  image: sbdayhfd/project:countryspeeds_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countryspeedsserver
+spec:
+    selector:
+        app: countryspeedsserver
+    ports:
+        - protocol: TCP
+          port: 50055
+          targetPort: 50055
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countryspeedsclient
+spec:
+    type: NodePort
+    selector:
+        app: countryspeedsclient
+    ports:
+        - protocol: TCP
+          port: 5004
+          targetPort: 5004          
+ 
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: regionspeedsclient
+    labels:
+        app: regionspeedsclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: regionspeedsclient
+    template:
+        metadata:
+            labels:
+                app: regionspeedsclient
+        spec:
+            containers:
+                - name: regionspeedsclient
+                  image: sbdayhfd/project:regionspeeds_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: regionspeedsserver
+    labels:
+        app: regionspeedsserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: regionspeedsserver
+    template:
+        metadata:
+            labels:
+                app: regionspeedsserver
+        spec:
+            containers:
+                - name: regionspeedsserver
+                  image: sbdayhfd/project:regionspeeds_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: regionspeedsserver
+spec:
+    selector:
+        app: regionspeedsserver
+    ports:
+        - protocol: TCP
+          port: 50056
+          targetPort: 50056
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: regionspeedsclient
+spec:
+    type: LoadBalancer
+    selector:
+        app: regionspeedsclient
+    ports:
+        - protocol: TCP
+          port: 5005
+          targetPort: 5005
+
+
+
+ 
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrytotaltestsclient
+    labels:
+        app: countrytotaltestsclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrytotaltestsclient
+    template:
+        metadata:
+            labels:
+                app: countrytotaltestsclient
+        spec:
+            containers:
+                - name: countrytotaltestsclient
+                  image: sbdayhfd/project:countrytotaltests_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrytotaltestsserver
+    labels:
+        app: countrytotaltestsserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrytotaltestsserver
+    template:
+        metadata:
+            labels:
+                app: countrytotaltestsserver
+        spec:
+            containers:
+                - name: countrytotaltestsserver
+                  image: sbdayhfd/project:countrytotaltests_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrytotaltestsserver
+spec:
+    selector:
+        app: countrytotaltestsserver
+    ports:
+        - protocol: TCP
+          port: 50057
+          targetPort: 50057
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrytotaltestsclient
+spec:
+    type: NodePort
+    selector:
+        app: countrytotaltestsclient
+    ports:
+        - protocol: TCP
+          port: 5006
+          targetPort: 5006
+
+          
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrycostmbpsclient
+    labels:
+        app: countrycostmbpsclient
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrycostmbpsclient
+    template:
+        metadata:
+            labels:
+                app: countrycostmbpsclient
+        spec:
+            containers:
+                - name: countrycostmbpsclient
+                  image: sbdayhfd/project:countrycostmbps_service_client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: countrycostmbpsserver
+    labels:
+        app: countrycostmbpsserver
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: countrycostmbpsserver
+    template:
+        metadata:
+            labels:
+                app: countrycostmbpsserver
+        spec:
+            containers:
+                - name: countrycostmbpsserver
+                  image: sbdayhfd/project:countrycostmbps_service_server
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrycostmbpsserver
+spec:
+    selector:
+        app: countrycostmbpsserver
+    ports:
+        - protocol: TCP
+          port: 50058
+          targetPort: 50058
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: countrycostmbpsclient
+spec:
+    type: NodePort
+    selector:
+        app: countrycostmbpsclient
+    ports:
+        - protocol: TCP
+          port: 5007
+          targetPort: 5007

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Country Total Tests</title>
+</head>
+<body>
+    <h1>Tests of {{countrytotaltests[0].country_name}}</h1>
+        <table style="width: 100%;">
+            <tr>
+                <th>Country Name</th>
+                <th>Country Code</th>
+                <th>Date</th>
+                <th>Total Tests</th>
+
+            </tr>
+            {% for tests in countrytotaltests %}
+            <tr>
+                <th>{{tests.country_name}}</th>
+                <th>{{tests.country_code}}</th>
+                <th>{{tests.tests_date}}</th>
+                <th>{{tests.total_tests}}</th>
+            </tr>
+            {% endfor %}
+</body>

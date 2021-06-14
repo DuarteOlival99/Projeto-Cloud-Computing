@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message CitySpeedsRequest {
+    string city_name = 1;
+    bool mean = 2;
+}
+
+message CitySpeeds {
+    string country_name = 1;
+    string country_code = 2;
+    string city_name = 3;
+    string region_code = 4;
+    string isp_name = 5;
+    string date_request = 6;
+    string download_speed = 7;
+    string upload_speed = 8;
+}
+
+message CitySpeedsResponse {
+    repeated CitySpeeds citySpeeds = 1;
+}
+service CitySpeedsService {
+    rpc CitySpeedsInfo (CitySpeedsRequest) returns (CitySpeedsResponse);
+}

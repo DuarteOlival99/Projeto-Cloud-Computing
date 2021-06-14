@@ -1,0 +1,22 @@
+syntax = "proto3";
+ 
+message CountrySpeedsRequest {
+    string country_name = 1;
+    bool mean = 2;
+}
+
+message CountrySpeeds {
+    string country_name = 1;
+    string country_code = 2;
+    string date_request = 3;
+    string download_speed = 4;
+    string upload_speed = 5; 
+}
+
+message CountrySpeedsResponse {
+    repeated CountrySpeeds countrySpeeds = 1;
+}
+
+service CountrySpeedsService {
+    rpc CountrySpeedsInfo (CountrySpeedsRequest) returns (CountrySpeedsResponse);
+}
